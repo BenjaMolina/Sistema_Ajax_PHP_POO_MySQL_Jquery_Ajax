@@ -56,7 +56,7 @@ function listar()
                     'pdf'
                 ],
                 "ajax":{
-                    url: '../../ajax/categoria.php?op=listar',
+                    url: '../ajax/categoria.php?op=listar',
                     type: "get",
                     dataType:"json",
                     error: function(e) {
@@ -67,7 +67,8 @@ function listar()
                 "iDisplayLenght": 5, //Paginacion
                 "order": [[0,"desc"]] //Ordenar (Columna, orden)
             
-            }).DataTable();
+            })
+        .DataTable();
 }
 
 init();
