@@ -41,7 +41,7 @@ $descripcion=isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]):
             $data = Array();
             while ($reg = $rspta->fetch_object()) {
                 $data[] = array(
-                    "0"=>$reg->idcategoria,
+                    "0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->idcategoria.')"><li class="fa fa-pencil"></li></button>',
                     "1"=>$reg->nombre,
                     "2"=>$reg->descripcion,
                     "3"=>$reg->condicion
