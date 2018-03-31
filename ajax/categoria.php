@@ -41,10 +41,19 @@ $descripcion=isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]):
             $data = Array();
             while ($reg = $rspta->fetch_object()) {
                 $data[] = array(
-                    "0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->idcategoria.')"><li class="fa fa-pencil"></li></button>',
+                    "0"=> ($reg->condicion) ? 
+                        '<button class="btn btn-warning" onclick="mostrar('.$reg->idcategoria.')"><li class="fa fa-pencil"></li></button>'.
+                        ' <button class="btn btn-danger" onclick="desactivar('.$reg->idcategoria.')"><li class="fa fa-close"></li></button>'
+                        :
+                        '<button class="btn btn-warning" onclick="mostrar('.$reg->idcategoria.')"><li class="fa fa-pencil"></li></button>'.
+                        ' <button class="btn btn-primary" onclick="activar('.$reg->idcategoria.')"><li class="fa fa-check"></li></button>'
+                        ,
                     "1"=>$reg->nombre,
                     "2"=>$reg->descripcion,
-                    "3"=>$reg->condicion
+                    "3"=>($reg->condicion) ?
+                         '<span class="label bg-green">Activado</span>'
+                         :      
+                         '<span class="label bg-red">Desactivado</span>'
                 );
             }
             $results = array(

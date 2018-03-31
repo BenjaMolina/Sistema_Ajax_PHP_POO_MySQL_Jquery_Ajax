@@ -123,4 +123,43 @@ function mostrar(idcategoria)
     );
 }
 
+//funcion para descativar categorias
+function desactivar(idcategoria)
+{
+    bootbox.confirm("¿Estas seguro de desactivar la Categoria?",function(result){
+        if(result)
+        {
+            $.post(
+                "../ajax/categoria.php?op=desactivar",
+                {idcategoria:idcategoria},
+                function(e)
+                {
+                    bootbox.alert(e);
+                    tabla.ajax.reload();
+        
+                }
+            );
+        }
+    });
+}
+
+function activar(idcategoria)
+{
+    bootbox.confirm("¿Estas seguro de activar la Categoria?",function(result){
+        if(result)
+        {
+            $.post(
+                "../ajax/categoria.php?op=activar",
+                {idcategoria:idcategoria},
+                function(e)
+                {
+                    bootbox.alert(e);
+                    tabla.ajax.reload();
+        
+                }
+            );
+        }
+    });
+}
+
 init();
