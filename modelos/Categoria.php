@@ -57,6 +57,15 @@
 
             return ejecutarConsulta($sql);
         }
+
+        //METODO PARA LISTAR LOS REGISTROS Y MOSTRAR EN EL SELECT
+        public function select()
+        {
+            $sql = "SELECT * FROM categoria 
+                    WHERE condicion = 1";
+
+            return ejecutarConsulta($sql);
+        }
     }
 
 ?>

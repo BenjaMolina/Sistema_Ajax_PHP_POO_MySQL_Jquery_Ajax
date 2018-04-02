@@ -51,7 +51,7 @@
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Categoria:</label>
-                            <select name="idcategoria" id="idcategoria" class="form-control" placeholder="Categoria" required></select>
+                            <select name="idcategoria" id="idcategoria" data-live-search="true" class="form-control selectpicker" required></select>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Stock:</label>

@@ -10,6 +10,17 @@ function init()
     {
         guardaryeditar(e);
     })
+
+    //Cargamos los items al select categoria
+    $.post(
+        "../ajax/articulo.php?op=selectCategoria",
+        function(data)
+        {        
+            console.log(data);
+            $("#idcategoria").html(data);
+            $("#idcategoria").selectpicker('refresh');
+        }
+    );
 }
 
 //funcion limpiar
