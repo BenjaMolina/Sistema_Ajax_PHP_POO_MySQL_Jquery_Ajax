@@ -34,13 +34,13 @@
 
         public function editar($idarticulo,$idcategoria,$codigo,$nombre,$stock,$descripcion,$imagen)
         {
-            $sql = "UPDATE categoria SET 
+            $sql = "UPDATE articulo SET 
                     idcategoria ='$idcategoria',
                     codigo = '$codigo', 
                     nombre = '$nombre', 
                     stock = '$stock', 
                     descripcion = '$descripcion', 
-                    imagen = '$imagen', 
+                    imagen = '$imagen' 
                     WHERE idarticulo='$idarticulo'";
             
             return ejecutarConsulta($sql);

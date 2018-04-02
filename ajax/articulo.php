@@ -18,7 +18,7 @@
 
             if(!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
             {
-                $imagen = "";
+                $imagen = $_POST["imagenactual"];
             }
             else
             {
@@ -72,7 +72,7 @@
                     "2"=>$reg->categoria,
                     "3"=>$reg->codigo,
                     "4"=>$reg->stock,
-                    "5"=>"<img src='../files/articulos".$reg->imagen."' height='50px' width='50px'>",
+                    "5"=>"<img src='../files/articulos/".$reg->imagen."' height='50px' width='50px'>",
                     "6"=>($reg->condicion) ?
                          '<span class="label bg-green">Activado</span>'
                          :      

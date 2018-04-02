@@ -16,11 +16,13 @@ function init()
         "../ajax/articulo.php?op=selectCategoria",
         function(data)
         {        
-            console.log(data);
+            //console.log(data);
             $("#idcategoria").html(data);
             $("#idcategoria").selectpicker('refresh');
         }
     );
+
+    $("#imagenmuestra").hide();
 }
 
 //funcion limpiar
@@ -130,10 +132,18 @@ function mostrar(idarticulo)
             mostrarform(true);
 
             $("#idcategoria").val(data.idcategoria);
+            $('#idcategoria').selectpicker('refresh');
+
             $("#codigo").val(data.codigo);
             $("#nombre").val(data.nombre);
             $("#stock").val(data.stock);
             $("#descripcion").val(data.descripcion);
+
+            $("#imagenmuestra").show(); 
+            $("#imagenmuestra").attr("src","../files/articulos/"+data.imagen); //agregamos el atributo src para mostrar la imagen
+
+            $("#imagenactual").val(data.imagen);
+
             $("#idarticulo").val(data.idarticulo);
 
         }
