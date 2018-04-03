@@ -32,6 +32,14 @@ function limpiar()
     $("#nombre").val("");
     $("#descripcion").val("");
     $("#stock").val("");
+
+    $("#imagenmuestra").attr("src","");
+    $("#imagenactual").val("");
+
+    $("#print").hide();
+
+    $("#idarticulo").val("");
+
 }
 
 //funcion mostrar formulario
@@ -44,13 +52,13 @@ function mostrarform(flag)
         $("#listadoregistros").hide();
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled",false);
-        //$("#btnagregar").hide();
+        $("#btnagregar").hide();
     }
     else
     {
         $("#listadoregistros").show();
         $("#formularioregistros").hide();
-        //$("#btnagregar").show();
+        $("#btnagregar").show();
     }
 }
 
@@ -195,6 +203,7 @@ function generarbarcode()
 {
     var codigo = $("#codigo").val();
     JsBarcode("#barcode",codigo);
+    $("#print").show();
 }
 
 function imprimir()
