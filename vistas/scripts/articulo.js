@@ -197,4 +197,9 @@ function generarbarcode()
     JsBarcode("#barcode",codigo);
 }
 
+function imprimir()
+{
+    $("#print").printArea();
+}
+
 init();

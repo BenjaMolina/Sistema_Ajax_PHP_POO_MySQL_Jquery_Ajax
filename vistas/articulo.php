@@ -71,7 +71,8 @@
                             <label>Codigo:</label>
                             <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Codigo de barras">
                             <button class="btn btn-success" type="button" onclick="generarbarcode()">Generar</button>
-                            <div>
+                            <button class="btn btn-info" type="button" onclick="imprimir()">Imprimir</button>
+                            <div id="print">
                               <svg id="barcode"></svg>
                             </div>
                           </div>
@@ -96,5 +97,6 @@
   require 'footer.php';
 ?>
 <script src="../public/js/JsBarcode.all.min.js"></script>
+<script src="../public/js/jquery.PrintArea.js"></script>
 <script src="./scripts/articulo.js"></script>
 
