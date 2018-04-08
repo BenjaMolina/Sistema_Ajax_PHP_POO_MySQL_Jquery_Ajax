@@ -10,7 +10,7 @@
 
         public function insertar($tipo_persona,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email)
         {
-            $sql = "INSERT INTO person (
+            $sql = "INSERT INTO persona (
                     tipo_persona,
                     nombre,
                     tipo_documento,
@@ -34,7 +34,7 @@
 
         public function editar($idpersona,$tipo_persona,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email)
         {
-            $sql = "UPDATE categoria SET 
+            $sql = "UPDATE persona SET 
                     tipo_persona='$tipo_persona', 
                     nombre='$nombre',
                     tipo_documento='$tipo_documento',
