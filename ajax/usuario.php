@@ -34,13 +34,15 @@
                 }
             }
 
+            //Hash SHA256 en la contraseña
+            $clavehash = hash("SHA256",$clave);
 
             if (empty($idarticulo)){
-                $rspta=$usuario->insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen);
+                $rspta=$usuario->insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen);
                 echo $rspta ? "Usuario registrado" : "Usuario no se pudo registrar";
             }
             else {
-                $rspta=$usuario->editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen);
+                $rspta=$usuario->editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen);
                 echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
             }
         break;

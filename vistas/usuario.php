@@ -49,36 +49,51 @@
                     <div class="panel-body"  id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Nombre:</label>
-                            <input type="hidden" name="idarticulo" id="idarticulo">
+                            <label>Nombre(*):</label>
+                            <input type="hidden" name="idusuario" id="idusuario">
                             <input type="text" class="form-control" name="nombre" id="nombre" maxlength="100" placeholder="Nombre" required>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Categoria:</label>
-                            <select name="idcategoria" id="idcategoria" data-live-search="true" class="form-control selectpicker" required></select>
+                            <label>Tipo Documento:</label>
+                            <select name="tipo_documento" id="tipo_documento" data-live-search="true" class="form-control selectpicker" required>
+                                <option value="DNI">DNI</option>
+                                <option value="RUC">RUC</option>
+                                <option value="CEDULA">CEEDULA</option>
+                            </select>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Stock:</label>
-                            <input type="number" class="form-control" name="stock" id="stock" placeholder="Stock" required>
+                            <label>Numero Doc.:</label>
+                            <input type="text" class="form-control" name="num_documento" id="num_documento" maxlength="20" placeholder="Numero Doc." required>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Descripción:</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion" maxlength="256" placeholder="Descripción">
+                            <label>Direccion:</label>
+                            <input type="text" class="form-control" name="direccion" id="direccion" maxlength="70" placeholder="Direccion">
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Telefono:</label>
+                            <input type="text" class="form-control" name="telefono" id="telefono" maxlength="20" placeholder="Telefono">
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Cargo:</label>
+                            <input type="text" class="form-control" name="cargo" id="cargo" maxlength="20" placeholder="Cargo">
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Login(*):</label>
+                            <input type="text" class="form-control" name="login" id="login" maxlength="20" placeholder="Login" required>
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Clave(*):</label>
+                            <input type="password" class="form-control" name="clave" id="clave" maxlength="64" placeholder="Clave" required>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Imagen:</label>
                             <input type="file" class="form-control" name="imagen" id="imagen">
                             <input type="hidden" class="form-control" name="imagenactual" id="imagenactual">
                             <img src="" width="150px" height="120px" id="imagenmuestra">
-                          </div>
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Codigo:</label>
-                            <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Codigo de barras">
-                            <button class="btn btn-success" type="button" onclick="generarbarcode()">Generar</button>
-                            <button class="btn btn-info" type="button" onclick="imprimir()">Imprimir</button>
-                            <div id="print">
-                              <svg id="barcode"></svg>
-                            </div>
                           </div>
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
