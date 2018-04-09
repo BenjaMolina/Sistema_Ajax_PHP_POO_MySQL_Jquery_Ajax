@@ -38,8 +38,8 @@
             $clavehash = hash("SHA256",$clave);
 
             if (empty($idarticulo)){
-                $rspta=$usuario->insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen);
-                echo $rspta ? "Usuario registrado" : "Usuario no se pudo registrar";
+                $rspta=$usuario->insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen,$_POST['permiso']);
+                echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
             }
             else {
                 $rspta=$usuario->editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen);
@@ -94,6 +94,21 @@
                 "aaData" =>$data
             );
             echo json_encode($results);
+        break;
+
+        case 'permisos':
+            //obtenemos los permisos de la tabla permisos
+            require_once '../modelos/Permiso.php';
+            $permiso = new Permiso();
+            $rspta = $permiso->listar();
+
+            while($reg = $rspta->fetch_object())
+            {
+                echo '<li> 
+                        <input type="checkbox" name="permiso[]" value="'.$reg->idpermiso.'">'
+                        .$reg->nombre.
+                    '</li>';
+            }
         break;
 
     }

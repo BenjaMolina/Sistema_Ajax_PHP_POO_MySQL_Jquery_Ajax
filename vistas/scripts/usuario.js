@@ -12,6 +12,15 @@ function init()
     })
 
     $("#imagenmuestra").hide();
+
+    //Mostramos los permisos
+    $.post(
+        "../ajax/usuario.php?op=permisos",
+        function(data)
+        {
+            $("#permisos").html(data);
+        }
+    );
 }
 
 //funcion limpiar

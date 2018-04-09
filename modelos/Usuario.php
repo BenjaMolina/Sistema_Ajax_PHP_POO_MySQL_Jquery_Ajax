@@ -8,7 +8,7 @@
 
         }
 
-        public function insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen)
+        public function insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen,$permisos)
         {
             $sql = "INSERT INTO usuario (
                         nombre,
@@ -37,7 +37,29 @@
                         '1'
                         )";
             
-            return ejecutarConsulta($sql);
+            //return ejecutarConsulta($sql);
+            $idusuarionew = ejecutarConsulta_retornarID($sql);
+
+            $num_elementos = 0;
+            $sw = true;
+
+            while($num_elementos < count($permisos))
+            {
+                $sql_detalle ="INSERT INTO usuario_permiso (
+                                    idusuario,
+                                    idpermiso
+                                )
+                                VALUES (
+                                    '$idusuarionew',
+                                    '$permisos[$num_elementos]'
+                                )";
+
+                ejecutarConsulta($sql_detalle) or $sw = false;
+
+                $num_elementos = $num_elementos + 1;
+            }
+
+            return $sw;
         }
 
         public function editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen)
