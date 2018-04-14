@@ -15,7 +15,7 @@ function init()
 
     //Mostramos los permisos
     $.post(
-        "../ajax/usuario.php?op=permisos",
+        "../ajax/usuario.php?op=permisos&id=",
         function(data)
         {
             $("#permisos").html(data);
@@ -158,6 +158,14 @@ function mostrar(idusuario)
 
             $("#idusuario").val(data.idusuario);
 
+        }
+    );
+
+    $.post(
+        "../ajax/usuario.php?op=permisos&id="+idusuario,
+        function(data)
+        {
+            $("#permisos").html(data);
         }
     );
 }

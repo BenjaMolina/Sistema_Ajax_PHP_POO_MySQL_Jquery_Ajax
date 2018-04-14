@@ -62,7 +62,7 @@
             return $sw;
         }
 
-        public function editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen)
+        public function editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen,$permisos)
         {
             $sql = "UPDATE usuario SET 
                     nombre='$nombre', 
@@ -74,10 +74,35 @@
                     cargo='$cargo',
                     login='$login',
                     clave='$clave',
-                    imagen='$imagen',
+                    imagen='$imagen'
                     WHERE idusuario='$idusuario'";
             
-            return ejecutarConsulta($sql);
+            ejecutarConsulta($sql);
+
+            //Eliminamos todos los permisos asignados para volverlos a registrar
+            $sqldel = "DELETE FROM usuario_permiso
+                        WHERE idusuario='$idusuario'";
+            
+            ejecutarConsulta($sqldel);
+
+            $num_elementos = 0;
+            $sw = true;
+
+            while($num_elementos < count($permisos))
+            {
+                $sql_detalle = "INSERT INTO usuario_permiso(
+                    idusuario,
+                    idpermiso
+                    )
+                    VALUES (
+                        '$idusuario',
+                        '$permisos[$num_elementos]'
+                    )";
+                    ejecutarConsulta($sql_detalle) or $sw = false;
+                    $num_elementos = $num_elementos + 1;
+            }
+
+            return $sw;
         }
 
         public function desactivar($idusuario)
@@ -109,6 +134,14 @@
         {
             $sql = "SELECT * FROM usuario";
 
+            return ejecutarConsulta($sql);
+        }
+
+        public function listarmarcados($idusuario)
+        {
+            $sql = "SELECT * FROM usuario_permiso
+                    WHERE idusuario='$idusuario'";
+            
             return ejecutarConsulta($sql);
         }
 
