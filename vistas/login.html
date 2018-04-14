@@ -30,13 +30,13 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Ingrese sus datos de Acceso</p>
-        <form action="../../index2.html" method="post">
+        <form method="post" id="frmAcceso">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="text" class="form-control" id="logina" name="logina" placeholder="Usuario">
             <span class="fa fa-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" id="clavea" name="clavea" class="form-control" placeholder="Password">
             <span class="fa fa-key form-control-feedback"></span>
           </div>
           <div class="row">
@@ -47,12 +47,8 @@
               <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
             </div><!-- /.col -->
           </div>
-        </form>
-
-        
+        </form>        
         <a href="#">Olvidé mi password</a><br>
-        
-
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
@@ -60,6 +56,12 @@
      <script src="../public/js/jquery-3.1.1.min.js"></script>
      <!-- Bootstrap 3.3.5 -->
      <script src="../public/js/bootstrap.min.js"></script>
+
+      <!-- Bootbox -->
+     <script src="../public/js/bootbox.min.js"></script>
+
+     <!-- Funciones -->
+     <script src="scripts/login.js"></script>
 
   </body>
 </html>

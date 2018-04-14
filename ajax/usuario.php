@@ -126,6 +126,30 @@
             }
         break;
 
+
+        case 'verificar':
+            $logina = $_POST['logina'];
+            $clavea = $_POST['clavea'];
+
+            //Desencriptar clave SHA256
+            $clavehash = hash("SHA256",$clavea);
+
+            $rspta = $usuario->verificar($logina, $clavehash);
+
+            $fetch = $rspta->fetch_object();
+
+            if(isset($fetch))
+            {
+                //Iniciando variables de session
+                $_SESSION['idusuario'] = $fetch->idusuario;
+                $_SESSION['nombre'] = $fetch->nombre;
+                $_SESSION['imagen'] = $fetch->imagen;
+                $_SESSION['login'] = $fetch->login;
+            }
+
+            echo json_encode($fetch); //Retornando JSON
+        break;
+
     }
 
 ?>
