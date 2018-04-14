@@ -12,6 +12,11 @@
   else  //Agrega toda la vista
   {
     require 'header.php';
+
+    if($_SESSION['almacen'] == 1)
+    {
+
+    
 ?>
 
 <!--Contenido-->
@@ -77,13 +82,20 @@
 
 
 <?php
+  
+  } //Llave de la condicion if de la variable de session
+
+  else
+  {
+    require 'noacceso.php';
+  }
+
   require 'footer.php';
 ?>
 
 <script src="./scripts/categoria.js"></script>
 
 <?php
-
   }
   ob_end_flush(); //liberar el espacio del buffer
 ?>
