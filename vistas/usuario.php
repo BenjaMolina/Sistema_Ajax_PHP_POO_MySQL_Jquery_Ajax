@@ -1,5 +1,17 @@
 <?php
-  require 'header.php';
+    //Activacion de almacenamiento en buffer
+    ob_start();
+    //iniciamos las variables de session
+    session_start();
+  
+    if(!isset($_SESSION["nombre"]))
+    {
+      header("Location: login.html");
+    }
+  
+    else  //Agrega toda la vista
+    {
+      require 'header.php';
 ?>
 
 <!--Contenido-->
@@ -125,3 +137,8 @@
 ?>
 <script src="./scripts/usuario.js"></script>
 
+<?php
+
+}
+ob_end_flush(); //liberar el espacio del buffer
+?>
