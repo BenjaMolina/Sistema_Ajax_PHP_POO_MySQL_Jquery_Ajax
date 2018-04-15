@@ -172,6 +172,12 @@
             echo json_encode($fetch); //Retornando JSON
         break;
 
+        case 'salir':
+            session_unset(); //Limpiamos las variables de sesion
+            session_destroy(); //Destriumos la sesion
+            header("Location: ../index.php");
+        break;
+
     }
 
 ?>
