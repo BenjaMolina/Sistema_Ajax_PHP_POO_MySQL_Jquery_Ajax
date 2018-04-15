@@ -1,6 +1,10 @@
 <?php
     
     require_once '../modelos/Ingreso.php';
+    
+    if(strlen(session_id()) < 1){
+        session_start();
+    }
 
     $ingreso = new Ingreso();
 
@@ -14,10 +18,10 @@
     $impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
     $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
 
-    $idarticulo = $_POST['idarticulo'];
-    $cantidad = $_POST['cantidad'];
-    $precio_compra = $_POST['precio_compra'];
-    $precio_venta = $_POST['precio_venta'];
+    $idarticulo = isset($_POST['idarticulo']) ? $_POST['idarticulo'] : "";
+    $cantidad = isset($_POST['cantidad']) ? $_POST['cantidad'] : "";
+    $precio_compra =isset($_POST['precio_compra']) ? $_POST['precio_compra'] : "";
+    $precio_venta =isset($_POST['precio_venta']) ? $_POST['precio_venta'] : "";
 
 
     switch($_GET["op"])
