@@ -44,6 +44,7 @@ function mostrarform(flag)
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled",false);
         $("#btnagregar").hide();
+        listarArticulos();
     }
     else
     {
@@ -77,6 +78,34 @@ function listar()
                 ],
                 "ajax":{
                     url: '../ajax/ingreso.php?op=listar',
+                    type: "get",
+                    dataType:"json",
+                    error: function(e) {
+                        console.log(e.responseText);
+                    }
+                },
+                "bDestroy": true,
+                "iDisplayLength": 5, //Paginacion
+                "order": [[0,"desc"]] //Ordenar (Columna, orden)
+            
+            })
+        .DataTable();
+}
+
+
+function listarArticulos()
+{
+    tabla = $('#tblarticulos')
+        .dataTable(
+            {
+                "aProcessing":true, //Activamos el procesamiento del datatables
+                "aServerSide":true, //Paginacion y filtrado realizados por el servidor
+                dom: "Bfrtip", //Definimos los elementos del control de tabla
+                buttons:[
+                    
+                ],
+                "ajax":{
+                    url: '../ajax/ingreso.php?op=listarArticulos',
                     type: "get",
                     dataType:"json",
                     error: function(e) {
