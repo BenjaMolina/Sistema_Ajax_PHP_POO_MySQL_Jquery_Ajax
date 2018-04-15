@@ -12,6 +12,9 @@
     else  //Agrega toda la vista
     {
       require 'header.php';
+
+      if($_SESSION['acceso'] == 1)
+      {
 ?>
 
 <!--Contenido-->
@@ -133,6 +136,14 @@
 
 
 <?php
+
+  } //Llave de la condicion if de la variable de session
+
+  else
+  {
+    require 'noacceso.php';
+  }
+
   require 'footer.php';
 ?>
 <script src="./scripts/usuario.js"></script>
