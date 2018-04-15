@@ -73,6 +73,20 @@
             );
             echo json_encode($results);
         break;
+
+        case 'selectProveedor':
+            
+            require_once '../modelos/Persona.php';
+            $persona = new Persona();
+
+            $rspta = $persona->listarp();
+
+            while($reg = $rspta->fetch_object())
+            {
+                echo '<option value='.$reg->idpersona.'>'.$reg->nombre.'</option>';
+            }
+            
+        break;
     }
 
 ?>

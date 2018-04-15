@@ -9,7 +9,16 @@ function init()
     $("#formulario").on("submit",function(e)
     {
         guardaryeditar(e);
-    })
+    });
+
+    $.post(
+        "../ajax/ingreso.php?op=selectProveedor",
+        function(data)
+        {
+            $("#idproveedor").html(data);
+            $("#idproveedor").selectpicker('refresh');
+        }
+    );
 }
 
 //funcion limpiar
