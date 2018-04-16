@@ -59,7 +59,7 @@
                     "4"=>$reg->tipo_comprobante,
                     "5"=>$reg->serie_comprobante.'-'.$reg->num_comprobante,
                     "6"=>$reg->total_compra,
-                    "7"=>($reg->condicion=='Aceptado') ?
+                    "7"=>($reg->estado=='Aceptado') ?
                          '<span class="label bg-green">Aceptado</span>'
                          :      
                          '<span class="label bg-red">Anulado</span>'

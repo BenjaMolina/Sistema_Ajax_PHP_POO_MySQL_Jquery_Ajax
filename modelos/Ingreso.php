@@ -49,11 +49,11 @@
                                     precio_venta
                                 )
                                 VALUES (
-                                    '$idingreso[$num_elementos]',
+                                    '$idingresonew',
                                     '$idarticulo[$num_elementos]',
                                     '$cantidad[$num_elementos]',
                                     '$precio_compra[$num_elementos]',
-                                    '$precio_venta[$num_elementos]',
+                                    '$precio_venta[$num_elementos]'
                                 )";
 
                 ejecutarConsulta($sql_detalle) or $sw = false;

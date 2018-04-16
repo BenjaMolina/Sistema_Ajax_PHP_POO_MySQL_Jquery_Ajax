@@ -117,7 +117,7 @@
                                   <th></th>
                                   <th></th>
                                   <th>
-                                    <h4 class="idtotal">$ 0.00</h4>
+                                    <h4 id="total">$ 0.00</h4>
                                     <input type="hidden" name="total_compra" id="total_compra">
                                   </th>
                                 </tfoot>
