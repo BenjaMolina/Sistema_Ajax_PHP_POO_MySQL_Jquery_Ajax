@@ -200,5 +200,72 @@ function anular(idingreso)
     });
 }
 
+//Variables
+var impuesto = 16;
+var cont = 0;
+var detalles= 0;
+
+$("#guardar").hide();
+$("#tipo_comprobante").change(marcarImpuesto);
+
+function marcarImpuesto()
+{
+    var tipo_comprobante = $("#tipo_comprobante option:selected").text();
+    if(tipo_comprobante == 'Factura')
+    {
+        $("#impuesto").val(impuesto);
+    }
+    else
+    {
+        $("#impuesto").val('0');
+    }
+}
+
+function agregarDetalle(idarticulo,articulo)
+{
+    var cantidad = 1;
+    var precio_compra = 1;
+    var precio_venta = 1;
+
+    if(idarticulo != "")
+    {
+        var subtotal = cantidad * precio_compra;
+        var fila = '<tr class="filas" id="fila'+cont+'"> ' +
+                      '<td>'+
+                           '<button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button>'+
+                       '</td>'+
+                      '<td>' +
+                          '<input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+
+                           articulo +
+                       '</td>'+
+                      '<td>' +
+                          '<input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'">'+
+                       '</td>'+
+                      '<td>' +
+                          '<input type="number" name="precio_compra[]" id="precio_compra[]" value="'+precio_compra+'">'+
+                       '</td>'+
+                      '<td>' +
+                          '<input type="number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'">'+
+                       '</td>'+
+                      '<td>' +
+                          '<span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span>'+
+                       '</td>'+
+                      '<td>' +
+                          '<button type="button" class="btn btn-info" onclick="modificarSubtotales()">'+
+                            '<i class="fa fa-refresh"></i>'+
+                          '</button>'+
+                       '</td>'+
+                   '</tr>';
+
+        cont++;
+        detalles++;
+        $("#detalles").append(fila);
+        modificarSubtotales(); 
+    }
+    else
+    {
+        alert("Error al ingresar el detalle, revisar los ddatos del articulo");
+    }
+}
 
 init();
