@@ -159,35 +159,48 @@ function guardaryeditar(e)
     limpiar();
 }
 
-function mostrar(idarticulo)
+function mostrar(idingreso)
 {
     $.post(
-        "../ajax/articulo.php?op=mostrar",
-        {idarticulo:idarticulo},
+        "../ajax/ingreso.php?op=mostrar",
+        {idingreso:idingreso},
         function(data,status)
         {
+
             data = JSON.parse(data);
             mostrarform(true);
 
-            $("#idcategoria").val(data.idcategoria);
-            $('#idcategoria').selectpicker('refresh');
+            $("#idproveedor").val(data.idproveedor);
+            $("#idproveedor").selectpicker('refresh');
 
-            $("#codigo").val(data.codigo);
-            $("#nombre").val(data.nombre);
-            $("#stock").val(data.stock);
-            $("#descripcion").val(data.descripcion);
-
-            $("#imagenmuestra").show(); 
-            $("#imagenmuestra").attr("src","../files/articulos/"+data.imagen); //agregamos el atributo src para mostrar la imagen
-
-            $("#imagenactual").val(data.imagen);
-
-            $("#idarticulo").val(data.idarticulo);
-
-            generarbarcode();
+            $("#tipo_comprobante").val(data.tipo_comprobante);
+            $("#tipo_comprobante").selectpicker('refresh');
+            
+            $("#serie_comprobante").val(data.serie_comprobante);
+            $("#num_comprobante").val(data.num_comprobante);
+            $("#fecha_hora").val(data.fecha);
+            $("#impuesto").val(data.impuesto);            
+            $("#idingreso").val(data.ingreso); 
+            
+            //Ocultar y mostrar botones
+            $("#guardar").show();
+            $("#btnGuardar").hide();
+            $("#btnCancelar").show();
+            $("#btnAgregarArt").hide();
 
         }
     );
+
+    $.post(
+        "../ajax/ingreso.php?op=listarDetalle&id="+idingreso,
+        function(r)
+        {
+            $("#detalles").html("");
+            $("#detalles").html(r);
+        }
+    );
+
+
 }
 
 

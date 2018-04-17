@@ -43,16 +43,63 @@
             echo json_encode($rspta);
         break;
 
+        case 'listarDetalle':
+            //Recibimos el idingreso
+            $id=$_GET['id'];
+
+            $rspta = $ingreso->listarDetalle($id);
+            
+            $total = 0;
+            
+            echo '<thead style="background-color:#A9D0F5">
+                    <th>Opciones</th>
+                    <th>Articulos</th>
+                    <th>Cantidad</th>
+                    <th>Precio Compra</th>
+                    <th>Precio Venta</th>
+                    <th>Subtotal</th>
+                </thead>';
+
+            while($reg = $rspta->fetch_object())
+            {
+                echo '<tbody>
+                        <tr class="filas">
+                            <td></td> 
+                            <td>'.$reg->nombre.'</td> 
+                            <td>'.$reg->cantidad.'</td> 
+                            <td>'.$reg->precio_compra.'</td> 
+                            <td>'.$reg->precio_venta.'</td> 
+                            <td>'.$reg->precio_compra * $reg->cantidad.'</td> 
+                        </tr>
+                      </tbody>';
+
+                $total += ($reg->precio_compra*$reg->cantidad);
+            }
+
+            echo '<tfoot>
+                    <th>TOTAL</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>
+                    <h4 id="total">$ '.$total.'</h4>
+                    <input type="hidden" name="total_compra" id="total_compra">
+                    </th>
+                </tfoot>';
+
+        break;
+
         case 'listar':
             $rspta = $ingreso->listar();
             $data = Array();
             while ($reg = $rspta->fetch_object()) {
                 $data[] = array(
                     "0"=> ($reg->estado == 'Aceptado') ? 
-                        '<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><li class="fa fa-pencil"></li></button>'.
+                        '<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><li class="fa fa-eye"></li></button>'.
                         ' <button class="btn btn-danger" onclick="anular('.$reg->idingreso.')"><li class="fa fa-close"></li></button>'
                         :
-                        '<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><li class="fa fa-pencil"></li></button>',
+                        '<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><li class="fa fa-eye"></li></button>',
                     "1"=>$reg->fecha,
                     "2"=>$reg->proveedor,
                     "3"=>$reg->usuario,
