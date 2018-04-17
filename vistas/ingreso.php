@@ -127,7 +127,7 @@
                               </table>
                           </div>
                           
-                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12" id="guardar">
+                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
                             <button class="btn btn-danger" onclick="cancelarform()" type="button" id="btnCancelar"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>

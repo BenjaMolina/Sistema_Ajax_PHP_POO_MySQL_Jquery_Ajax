@@ -29,11 +29,22 @@ function limpiar()
     $("#serie_comprobante").val("");
     $("#num_comprobante").val("");
     $("#fecha_hora").val("");
-    $("#impuesto").val("");
+    $("#impuesto").val("0");
 
     $("#total_compra").val("");
     $(".filas").remove();
     $("#total").html(0);
+
+    //obtenemos la fecha actual
+    var now = new Date();
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    var today = now.getFullYear()+"-"+(month)+"-"+(day);
+    $("#fecha_hora").val(today);
+
+    //Marcar el primer tipo de documento
+    $("#tipo_comprobante").val("Boleta");
+    $("#tipo_comprobante").selectpicker('refresh');
 
 }
 
@@ -46,13 +57,13 @@ function mostrarform(flag)
     {
         $("#listadoregistros").hide();
         $("#formularioregistros").show();
-        $("#btnGuardar").prop("disabled",false);
+        //$("#btnGuardar").prop("disabled",false);
         $("#btnagregar").hide();
         listarArticulos();
 
-        $("#guardar").hide();
         $("#btnguardar").show();
         $("#btnCancelar").show();
+        detalles = 0;
         $("#btnAgregarArt").show();
     }
     else
@@ -183,7 +194,6 @@ function mostrar(idingreso)
             $("#idingreso").val(data.ingreso); 
             
             //Ocultar y mostrar botones
-            $("#guardar").show();
             $("#btnGuardar").hide();
             $("#btnCancelar").show();
             $("#btnAgregarArt").hide();
@@ -230,7 +240,7 @@ var impuesto = 16;
 var cont = 0;
 var detalles= 0;
 
-$("#guardar").hide();
+$("#btnGuardar").hide();
 $("#tipo_comprobante").change(marcarImpuesto);
 
 function marcarImpuesto()
@@ -335,11 +345,11 @@ function evaluar()
 {
     if(detalles > 0)
     {
-        $("#guardar").show();
+        $("#btnGuardar").show();
     }
     else
     {
-        $("#guardar").hide();
+        $("#btnGuardar").hide();
         cont = 0;
     }
 }
