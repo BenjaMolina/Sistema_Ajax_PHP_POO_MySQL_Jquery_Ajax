@@ -188,17 +188,19 @@ function mostrar(idingreso)
             $("#btnCancelar").show();
             $("#btnAgregarArt").hide();
 
+            $.post(
+                "../ajax/ingreso.php?op=listarDetalle&id="+idingreso,
+                function(r)
+                {
+                    $("#detalles").html("");
+                    $("#detalles").html(r);
+                }
+            );
+
         }
     );
 
-    $.post(
-        "../ajax/ingreso.php?op=listarDetalle&id="+idingreso,
-        function(r)
-        {
-            $("#detalles").html("");
-            $("#detalles").html(r);
-        }
-    );
+    
 
 
 }
