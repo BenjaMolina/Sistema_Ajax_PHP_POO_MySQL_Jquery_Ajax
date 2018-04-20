@@ -86,6 +86,23 @@
             return ejecutarConsulta($sql);
         }
 
+
+        public function comprasUlt10dias()
+        {
+            $sql= "SELECT 
+                        CONCAT(DAY(fecha_hora),'-',MONTH(fecha_hora)) as fecha,
+                        SUM(total_compra) as total
+                    FROM
+                        ingreso
+                    GROUP BY
+                        fecha_hora 
+                    ORDER BY
+                        fecha_hora
+                    DESC limit 0,10";
+            
+            return ejecutarConsulta($sql);
+        }
+
     }
 
 ?>
