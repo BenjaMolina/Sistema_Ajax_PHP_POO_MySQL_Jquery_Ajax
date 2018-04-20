@@ -62,6 +62,30 @@
             return ejecutarConsulta($sql);
         }
 
+        public function totalCompraHoy()
+        {
+            $sql= "SELECT 
+                        IFNULL(SUM(total_compra),0) as total_compra
+                    FROM
+                        ingreso
+                    WHERE
+                        DATE(fecha_hora) = curdate()";
+            
+            return ejecutarConsulta($sql);
+        }
+
+        public function totalVentaHoy()
+        {
+            $sql= "SELECT 
+                        IFNULL(SUM(total_venta),0) as total_venta
+                    FROM
+                        venta
+                    WHERE
+                        DATE(fecha_hora) = curdate()";
+            
+            return ejecutarConsulta($sql);
+        }
+
     }
 
 ?>
