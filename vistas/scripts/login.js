@@ -10,10 +10,9 @@ $("#frmAcceso").on('submit',function(e){
         },
         function(data)
         {
-            
             if(data != 'null')
             {
-                $(location).attr("href","categoria.php");
+                $(location).attr("href","escritorio.php");
             }
             else
             {
