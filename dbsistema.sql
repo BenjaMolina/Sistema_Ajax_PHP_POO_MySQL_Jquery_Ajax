@@ -494,6 +494,33 @@ ALTER TABLE `venta`
   ADD CONSTRAINT `fk_venta_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
+
+--
+-- TRIGGER ACTUALIZAR STOCK
+--
+
+DELIMITER //
+CREATE TRIGGER tr_updStockIngreso AFTER INSERT ON detalle_ingreso FOR EACH ROW BEGIN UPDATE articulo SET stock = stock + NEW.cantidad WHERE articulo.idarticulo = NEW.idarticulo;
+END
+//
+DELIMITER ;
+
+
+--
+-- TRIGGER VENTAS STOCK
+--
+
+DELIMITER //
+CREATE TRIGGER tr_updStockVenta AFTER INSERT ON
+detalle_venta
+FOR EACH ROW BEGIN
+UPDATE articulo SET stock = stock - NEW.cantidad
+WHERE articulo.idarticulo = NEW.idarticulo;
+END
+//
+DELIMITER ;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
