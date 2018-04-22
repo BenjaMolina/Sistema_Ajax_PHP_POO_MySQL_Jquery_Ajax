@@ -72,11 +72,29 @@ switch ($_GET["op"]){
  		//Vamos a declarar un array
  		$data= Array();
 
- 		while ($reg=$rspta->fetch_object()){
+		 while ($reg=$rspta->fetch_object())
+		 {
+			if($reg->tipo_comprobante=='Ticket')
+			{
+				$url = '../reportes/exTicket.php?id='; //Ruta del archivo exTicket
+			}
+			else
+			{
+				$url = '../reportes/exFactura.php?id='; //Ruta del archivo exFactura
+			}
+
  			$data[]=array(
- 				"0"=>($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>'.
- 					' <button class="btn btn-danger" onclick="anular('.$reg->idventa.')"><i class="fa fa-close"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>',
+ 				"0"=>(
+					 ($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>'.
+						' <button class="btn btn-danger" onclick="anular('.$reg->idventa.')"><i class="fa fa-close"></i></button>':
+						'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>'
+					 ).
+					 '<a target="_blank" href="'.$url.$reg->idventa.'">
+						  <button class="btn btn-info">
+						 <i class="fa fa-file"></i>
+						 </button>
+					 </a>'
+					 ,
  				"1"=>$reg->fecha,
  				"2"=>$reg->cliente,
  				"3"=>$reg->usuario,
